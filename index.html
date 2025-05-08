@@ -7,68 +7,179 @@
   <link rel="icon" href="https://iili.io/3ws7PNs.png">
   <meta name="description" content="FelixCraft โรลเพลไมค์คราฟ.">
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: url('background.jpg') no-repeat center center fixed;
-        background-size: cover;
-        height: 100vh;
-        color: white;
+    :root {
+      --primary-color: #89CFF0;
+      --secondary-color: #b6e8ff;
+      --accent-color: #69ffff;
+      --dark-bg: #0a0a0a;
+      --card-bg: rgba(30, 30, 40, 0.8);
+      --text-color: #f8f8f8;
+      --gradient: linear-gradient(135deg, #FFB6C1 0%, #89CFF0 100%);
     }
-
-    .navbar {
-        background-color: rgba(0, 0, 0, 0.7); /* สีดำโปร่งใส */
-        display: flex;
-        align-items: center;
-        padding: 10px 20px;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
+    
+    /* Loading Screen */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--dark-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease;
     }
-
-    .navbar img {
-        height: 40px;
-        margin-right: 20px;
+    
+    .loading-logo {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 30px;
+      animation: pulse 2s infinite;
     }
-
-    .navbar a {
-        color: white;
-        padding: 14px 16px;
-        text-decoration: none;
-        display: block;
+    
+    .loading-bar-container {
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 20px;
     }
-
-    .navbar a:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-        border-radius: 4px;
+    
+    .loading-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+      border-radius: 2px;
     }
-
-    main {
-        padding: 100px 20px 20px;
+    
+    .loading-text {
+      color: var(--text-color);
+      font-family: 'Kanit', sans-serif;
+      font-size: 1.2rem;
+      margin-top: 20px;
+      opacity: 0.8;
     }
-</style>
-</head>
-<body>
-
-<div class="navbar">
-    <img src="https://iili.io/3ws7PNs.png" alt="FelixCraft Official">
-    <a href="#home">หน้าแรก</a>
-</div>
-
-  <style>
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+    
     * {
       box-sizing: border-box;
-    }
-    body, html {
       margin: 0;
       padding: 0;
-      height: 100%;
-      background-color: #000;
-      color: white;
-      font-family: 'Kanit', sans-serif;
     }
+    
+    body, html {
+      height: 100%;
+      background-color: var(--dark-bg);
+      color: var(--text-color);
+      font-family: 'Kanit', sans-serif;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    
+    /* Navbar */
+    .navbar {
+      background-color: rgba(10, 10, 20, 0.9);
+      display: flex;
+      align-items: center;
+      padding: 20px 40px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border-bottom: 1px solid rgba(255, 182, 193, 0.1);
+    }
+    
+    .navbar.scrolled {
+      padding: 15px 40px;
+      background-color: rgba(10, 10, 20, 0.95);
+      box-shadow: 0 5px 30px rgba(137, 207, 240, 0.1);
+    }
+    
+    .navbar img {
+      height: 45px;
+      margin-right: 25px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      filter: drop-shadow(0 2px 5px rgba(137, 207, 240, 0.3));
+    }
+    
+    .navbar img:hover {
+      transform: scale(1.15) rotate(5deg);
+      filter: drop-shadow(0 5px 15px rgba(137, 207, 240, 0.5));
+    }
+    
+    .nav-links {
+      display: flex;
+      flex-grow: 1;
+    }
+    
+    .navbar a {
+      color: var(--text-color);
+      padding: 10px 18px;
+      text-decoration: none;
+      font-weight: 400;
+      position: relative;
+      transition: all 0.4s ease;
+      font-size: 1.05rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .navbar a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    
+    .navbar a:hover {
+      color: var(--secondary-color);
+      text-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
+    }
+    
+    .navbar a:hover::after {
+      width: 100%;
+      left: 0;
+    }
+    
+    .discord-btn {
+      background: var(--gradient);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: 0 4px 15px rgba(137, 207, 240, 0.3);
+      border: none;
+      font-size: 1rem;
+    }
+    
+    .discord-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(137, 207, 240, 0.4);
+      text-shadow: 0 0 5px white;
+    }
+    
+    /* Hero Section */
     .hero {
       background-image: url('https://iili.io/3wscDfR.gif');
       background-size: cover;
@@ -78,153 +189,713 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
+    
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
+      background: linear-gradient(to bottom, rgba(10,10,20,0.9) 0%, rgba(10,10,20,0.5) 100%);
     }
+    
     .hero-content {
       position: relative;
       text-align: center;
       z-index: 1;
+      padding: 0 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards 0.5s;
     }
+    
     .hero-content h1 {
-      font-size: 3rem;
+      font-size: clamp(2.8rem, 6vw, 5rem);
       font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1px;
     }
+    
     .highlight {
-      color: #72e5f4;
+      position: relative;
+      display: inline-block;
     }
+    
+    .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--gradient);
+      animation: underlinePulse 3s infinite;
+      border-radius: 3px;
+    }
+    
     .subtitle {
-      font-size: 1.2rem;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
       font-weight: 300;
-      margin-top: 10px;
+      margin-top: 15px;
+      line-height: 1.7;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
+    
     .arrow {
-      margin-top: 20px;
-      font-size: 2rem;
-      animation: bounce 1.5s infinite;
+      margin-top: 40px;
+      font-size: 2.5rem;
+      animation: bounce 1.5s infinite, fadeIn 1s ease forwards 1.5s;
+      opacity: 0;
+      color: var(--secondary-color);
+      text-shadow: 0 2px 10px rgba(255, 182, 193, 0.5);
     }
+    
+    /* Floating Shapes */
+    .floating-shapes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    
+    .shape {
+      position: absolute;
+      opacity: 0.15;
+      filter: blur(30px);
+      animation: float 15s infinite linear;
+    }
+    
+    .shape:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      background: var(--primary-color);
+      top: 20%;
+      left: 10%;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      animation-delay: 0s;
+    }
+    
+    .shape:nth-child(2) {
+      width: 400px;
+      height: 400px;
+      background: var(--secondary-color);
+      top: 60%;
+      left: 70%;
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      animation-delay: 3s;
+      animation-duration: 20s;
+    }
+    
+    .shape:nth-child(3) {
+      width: 250px;
+      height: 250px;
+      background: var(--accent-color);
+      top: 30%;
+      left: 80%;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation-delay: 6s;
+      animation-duration: 25s;
+    }
+    
+    /* Main Content */
+    .container {
+      max-width: 1300px;
+      margin: auto;
+      padding: 100px 30px;
+      position: relative;
+    }
+    
+    .section {
+      margin-bottom: 80px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    h2, h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      padding: 0 20px;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--gradient);
+      border-radius: 3px;
+    }
+    
+    h3 {
+      font-size: 1.8rem;
+      color: var(--secondary-color);
+      margin-bottom: 25px;
+      text-shadow: 0 2px 5px rgba(255, 182, 193, 0.3);
+    }
+    
+    p, li {
+      line-height: 1.9;
+      font-size: 1.15rem;
+      color: var(--text-color);
+      opacity: 0.9;
+    }
+    
+    a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    
+    a:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+      text-shadow: 0 0 10px rgba(137, 207, 240, 0.5);
+    }
+    
+    /* Image Gallery */
+    .image-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .image-container img {
+      width: 100%;
+      max-width: 550px;
+      height: auto;
+      border-radius: 15px;
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      object-fit: cover;
+      aspect-ratio: 16/9;
+      border: 2px solid rgba(137, 207, 240, 0.2);
+    }
+    
+    .image-container img:hover {
+      transform: scale(1.05) translateY(-10px);
+      box-shadow: 0 15px 40px rgba(137, 207, 240, 0.3);
+      border-color: rgba(255, 182, 193, 0.4);
+    }
+    
+    /* Team Section */
+    .team-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .team-member {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border-left: 4px solid transparent;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      backdrop-filter: blur(5px);
+    }
+    
+    .team-member:hover {
+      transform: translateX(15px);
+      border-left: 4px solid var(--secondary-color);
+      background: rgba(40, 40, 50, 0.8);
+      box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2);
+    }
+    
+    .team-member img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 20px;
+      object-fit: cover;
+      border: 2px solid var(--primary-color);
+      box-shadow: 0 5px 15px rgba(137, 207, 240, 0.3);
+      transition: all 0.4s ease;
+    }
+    
+    .team-member:hover img {
+      transform: scale(1.1);
+      border-color: var(--secondary-color);
+      box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
+    }
+    
+    .team-member div {
+      flex: 1;
+    }
+    
+    .team-member strong {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      display: block;
+      margin-bottom: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    .team-member:hover strong {
+      color: var(--secondary-color);
+    }
+    
+    /* Projects Section */
+    .projects-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .project-card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 15px;
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border: 1px solid rgba(137, 207, 240, 0.1);
+      backdrop-filter: blur(5px);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--gradient);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 40px rgba(137, 207, 240, 0.2);
+      border-color: rgba(255, 182, 193, 0.3);
+    }
+    
+    .project-card h4 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .project-card h4::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50%;
+      height: 2px;
+      background: var(--secondary-color);
+      transition: all 0.4s ease;
+    }
+    
+    .project-card:hover h4::after {
+      width: 100%;
+    }
+    
+    .project-card p {
+      opacity: 0.9;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(10, 10, 20, 0.7);
+      margin-top: 80px;
+      position: relative;
+      backdrop-filter: blur(5px);
+      border-top: 1px solid rgba(255, 182, 193, 0.1);
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 2px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+    
+    footer p {
+      font-size: 1rem;
+      opacity: 0.7;
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
     @keyframes bounce {
       0%, 100% {
         transform: translateY(0);
       }
       50% {
-        transform: translateY(-10px);
+        transform: translateY(-15px);
       }
     }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 40px 20px;
+    
+    @keyframes underlinePulse {
+      0%, 100% {
+        opacity: 0.7;
+        width: 100%;
+      }
+      50% {
+        opacity: 1;
+        width: 90%;
+      }
     }
-    h2, h3 {
-      text-align: center;
-      margin-bottom: 10px;
+    
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      50% {
+        transform: translate(50px, 50px) rotate(180deg);
+      }
+      100% {
+        transform: translate(0, 0) rotate(360deg);
+      }
     }
-    p, li {
-      line-height: 1.8;
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .navbar {
+        padding: 15px 30px;
+      }
+      
+      .navbar.scrolled {
+        padding: 10px 30px;
+      }
+      
+      .container {
+        padding: 80px 25px;
+      }
+      
+      .projects-list {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
     }
-    a {
-      color: #facc15;
-      text-decoration: underline;
+    
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 15px;
+      }
+      
+      .nav-links {
+        margin: 15px 0;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .discord-btn {
+        margin-top: 15px;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.8rem;
+      }
+      
+      .subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .image-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .image-container img {
+        max-width: 100%;
+      }
+      
+      .projects-list {
+        grid-template-columns: 1fr;
+      }
+      
+      .team-member {
+        padding: 15px;
+      }
     }
-    .section {
-      margin-bottom: 40px;
-    }
-    footer {
-      text-align: center;
-      opacity: 0.4;
-      padding: 20px;
+    
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
+      
+      h2 {
+        font-size: 2rem;
+      }
+      
+      h3 {
+        font-size: 1.5rem;
+      }
+      
+      .container {
+        padding: 60px 15px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="hero">
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <img src="https://cdn.discordapp.com/attachments/1294284728157081685/1367777232679862312/icon.png?ex=681dba50&is=681c68d0&hm=7dacc80d3401670c994401d9ebfc65b0c231349ea7d840a2790adff46c0423b2&" alt="FelixCraft Loading" class="loading-logo">
+    <div class="loading-bar-container">
+      <div class="loading-bar" id="loading-bar"></div>
+    </div>
+    <div class="loading-text">กำลังโหลด FelixCraft . . .</div>
+  </div>
+  
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <img src="https://iili.io/3ws7PNs.png" alt="FelixCraft Official">
+    <div class="nav-links">
+      <a href="#home">หน้าแรก</a>
+      <a href="#about">เกี่ยวกับ</a>
+      <a href="#team">ทีมงาน</a>
+      <a href="#projects">โปรเจค</a>
+      <a href="#gallery">ผลงาน</a>
+    </div>
+    <a href="https://discord.gg/dnHNdRNZnq" class="discord-btn" target="_blank">
+      <i class="fab fa-discord"></i> เข้าร่วม Discord
+    </a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
     <div class="overlay"></div>
     <div class="hero-content">
-      <h1>FelixCraft <span class="highlight">Official</span></h1>
-      <div class="subtitle">Roleplay Minecraft bedrock คุณภาพ!<br>เลื่อนลงเพื่อเข้าสู่หน้าหลัก</div>
+      <h1>
+        <span class="gradient-text">FelixCraft</span>
+        <span class="highlight-text">Official</span>
+      </h1>
+      <div class="subtitle">Roleplay Minecraft bedrock and Java คุณภาพ!<br>เซิร์ฟเวอร์โรลเพลย์ที่ทันสมัยและสนุกสนาน พร้อมประสบการณ์การเล่นที่สมจริงที่สุด</div>
       <div class="arrow">↓</div>
     </div>
-  </div>
+  </section>
 
+  <!-- Main Content -->
   <div class="container">
-    <div class="section">
+    <!-- About Section -->
+    <section class="section" id="about">
       <h2>FelixCraft Official</h2>
-      <p><strong>🎉 FelixCraft คือโปรเจคRoleplay Minecraft</strong> ใน Bedrock เพื่อความสนุก. </p>
-      <p>🧪 ถ้าเราได้ทำการเปิดรับสมัครคนจะแจ้งใน <span class="highlight">Discord</span> สามารถเข้าดิสคอสได้ที่หัวข้อถัดไป.</p>
-    </div>
+      <p><strong>🎉 FelixCraft คือโปรเจค Roleplay Minecraft</strong> ใน Bedrock และ Java เพื่อความสนุกและประสบการณ์การเล่นที่สมจริงที่สุด ด้วยระบบที่ทันสมัยและชุมชนที่เป็นมิตร</p>
+      <p>🧪 เรากำลังพัฒนาอย่างต่อเนื่อง และจะเปิดรับสมัครสมาชิกในเร็วๆ นี้ ติดตามข่าวสารได้ที่ <a href="https://discord.gg/dnHNdRNZnq" target="_blank" class="highlight">Discord</a> ของเราเพื่อไม่ให้พลาดทุกความเคลื่อนไหว</p>
+    </section>
 
-    <div class="section">
-      <h3>📞 Discord</h3>
-      <p>เข้าดิสของเรา <a href="https://discord.gg/dnHNdRNZnq" target="_blank">FelixCraft Official</a></p>
-    </div>
+    <!-- Discord Section -->
+    <section class="section" id="discord">
+      <h3>📞 เข้าร่วมชุมชนของเรา</h3>
+      <p>ร่วมเป็นส่วนหนึ่งของชุมชน FelixCraft ที่ <a href="https://discord.gg/dnHNdRNZnq" target="_blank">Discord</a> เพื่อรับข่าวสารล่าสุด พูดคุยกับสมาชิกคนอื่นๆ และร่วมกิจกรรมพิเศษต่างๆ</p>
+      <div class="image-container" style="margin-top: 30px;">
+        <img src="https://iili.io/3erIteI.png" alt="Discord Community" loading="lazy">
+      </div>
+    </section>
 
-    <style>
-      .image-container {
-          display: flex;
-          justify-content: space-between;
-          gap: 10px;
-          margin-top: 20px;
-      }
-      .image-container img {
-          width: 500px;
-          height: auto;
-          border-radius: 10px;
-          transition: transform 0.3s ease;
-      }
-      .image-container img:hover {
-          transform: scale(1.1);
-      }
-  </style>
-</head>
-<body>
-
-
-    <h2>ผลงาน FelixCraft Bedrock</h2>
-
-    <div class="image-container">
-        <img src="https://iili.io/3ws088B.png" alt="FelixCraft Ss7">
-        <img src="https://iili.io/3wsEMXe.png" alt="FelixCraft Ss6">
-    </div>
+    <!-- Gallery Section -->
+    <section class="section" id="gallery">
+      <h2>ผลงาน FelixCraft Bedrock</h2>
+      <p>ชมผลงานการสร้างสรรค์และพัฒนาของเราใน Minecraft Bedrock Edition</p>
+      <div class="image-container">
+        <img src="https://iili.io/3ws088B.png" alt="FelixCraft Ss7" loading="lazy">
+        <img src="https://iili.io/3wsEMXe.png" alt="FelixCraft Ss6" loading="lazy">
+        <img src="https://iili.io/3erxcLG.webp" alt="FelixCraft Ss5" loading="lazy">
+        <img src="https://iili.io/3erIJHB.png" alt="FelixCraft Ss4" loading="lazy">
+      </div>
+    </section>
     
-    <div class="section">
-      <h3>👨‍💻 นักพัฒนาเซิฟเวอร์ FelixCraft</h3>
-      <ul>
-        <li style="display: flex; align-items: center; margin-bottom: 10px;">
-          <img src="https://cdn.discordapp.com/avatars/957864760085446736/2f8ba6b01e1a151349d09d6b150e4253.png?size=512" alt="MaxDev" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
-          <strong>คุณ Frame121 →</strong>  CEO FelixCraft</li>
-        <li style="display: flex; align-items: center; margin-bottom: 10px;">
-          <img src="https://cdn.discordapp.com/avatars/1271715061727105038/8e918fe157b026c70a44aebb82d11660.png?size=512" alt="MaxDev" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
-          <strong>คุณ Nick →</strong>  Admin ใหญ่</li>
-        <li style="display: flex; align-items: center; margin-bottom: 10px;">
-          <img src="https://cdn.discordapp.com/avatars/787239141443895317/eec2000e093f6b92a751f15292ab4f02.png?size=512" alt="MaxDev" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
-          <strong>คุณ Hun →</strong>  Admin FelixCraft</li>
-        <li style="display: flex; align-items: center; margin-bottom: 10px;">
-          <img src="https://cdn.discordapp.com/avatars/1350187693413367828/abccf035065efb1268d68136722cf6e8.png?size=512" alt="MaxDev" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
-          <strong>คุณ C →</strong> Admin FelixCraft</li>
-        <li style="display: flex; align-items: center; margin-bottom: 10px;">
-          <img src="https://cdn.discordapp.com/avatars/1228588732563587114/83392e60dd444a5c7384d94b24570719?size=1024" alt="MaxDev" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
-          <strong>คุณ Rimaki →</strong>  Admin FelixCraft เป็น DEV</li>
-      </ul>
-    </div>
+    <!-- Team Section -->
+    <section class="section" id="team">
+      <h3>👨‍💻 ทีมพัฒนา FelixCraft</h3>
+      <p>ทีมงานผู้ทุ่มเทและสร้างสรรค์ FelixCraft เพื่อประสบการณ์การเล่นที่ดีที่สุด</p>
+      <div class="team-list">
+        <div class="team-member">
+          <img src="https://cdn.discordapp.com/avatars/957864760085446736/2f8ba6b01e1a151349d09d6b150e4253.png?size=512" alt="Frame121">
+          <div>
+            <strong>คุณ Frame121 </strong> CEO FelixCraft
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="https://cdn.discordapp.com/avatars/1271715061727105038/7ac4a196fb6ba80e356f6ae3d624fd5b.png?size=1024" alt="Nick">
+          <div>
+            <strong>คุณ Nick </strong> Admin ใหญ่
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="https://cdn.discordapp.com/avatars/787239141443895317/eec2000e093f6b92a751f15292ab4f02.png?size=512" alt="Hun">
+          <div>
+            <strong>คุณ Hun </strong> Admin FelixCraft
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="https://cdn.discordapp.com/avatars/1350187693413367828/9ce70f73978f0de1a5d0c1d56e910cd3.png?size=1024" alt="C">
+          <div>
+            <strong>คุณ C </strong> Admin FelixCraft
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="https://cdn.discordapp.com/avatars/1228588732563587114/83392e60dd444a5c7384d94b24570719?size=1024" alt="Rimaki">
+          <div>
+            <strong>คุณ Rimaki </strong> Admin และ Developer
+          </div>
+        </div>
+      </div>
+    </section>
     
-    <div class="section">
+    <!-- Projects Section -->
+    <section class="section" id="projects">
       <h3>🔥 โปรเจคของเรา</h3>
-      <ul>
-        <li><strong>FelixCraft For Bedrock / เซิฟเวอร์ Roleplay</strong> – บนมือถือ</li>
-        <li><strong>FelixCraft For Java / เซิฟเวอร์ Roleplay</strong> – บนคอม</li>
-        <li><strong>FelixCraft Game / จัดกิจกรรม เซิฟเวอร์ ชน เซิฟเวอร์</strong> – หรือ ชวนเซิฟเวอร์อื่นมาเข้าร่วม FelixGame เพื่อแข่งขันกันว่าใครจะชนะ</li>
-      </ul>
-    </div>
+      <p>โปรเจคต่างๆ ที่เรากำลังพัฒนาอยู่</p>
+      <div class="projects-list">
+        <div class="project-card">
+          <h4>FelixCraft For Bedrock</h4>
+          <p>เซิร์ฟเวอร์ Roleplay บนมือถือ ที่ออกแบบมาเพื่อประสบการณ์การเล่นที่สมจริงที่สุด ด้วยระบบต่างๆ ที่น่าสนใจ</p>
+        </div>
+        <div class="project-card">
+          <h4>FelixCraft For Java</h4>
+          <p>เซิร์ฟเวอร์ Roleplay บนคอมพิวเตอร์ สำหรับผู้ที่ต้องการกราฟิกและฟีเจอร์ที่ครบครันกว่า พร้อมระบบที่ซับซ้อนและชุมชนที่ใหญ่ขึ้น ณ ปัจจุบันนี้ยังไม่มีวันเปิดตัวอย่างเป็นทางการ</p>
+        </div>
+        <div class="project-card">
+          <h4>FelixCraft Game</h4>
+          <p>กิจกรรมแข่งขันระหว่างเซิร์ฟเวอร์ ที่จะทดสอบความสามารถของผู้เล่นในรูปแบบต่างๆ</p>
+        </div>
+      </div>
+    </section>
 
     <footer>
-      ©2025 FelixCraft | Powered by Frame121
+      <p>©2023 - ©2025 FelixCraft | Powered by Frame121</p>
+      <p style="margin-top: 10px;">ติดต่อเรา: felixcraft.official@gmail.com</p>
     </footer>
-    
   </div>
+
+  <script>
+    // Loading Screen Animation
+    window.addEventListener('load', function() {
+      const loadingBar = document.getElementById('loading-bar');
+      const loadingScreen = document.getElementById('loading-screen');
+      
+      // Simulate loading progress
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 10;
+        loadingBar.style.width = `${Math.min(progress, 100)}%`;
+        
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+              loadingScreen.style.display = 'none';
+            }, 800);
+          }, 300);
+        }
+      }, 200);
+    });
+    
+    // Scroll animation for sections
+    document.addEventListener('DOMContentLoaded', function() {
+      const sections = document.querySelectorAll('.section');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+      
+      // Navbar scroll effect
+      window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+      
+      // Add floating animation to shapes
+      const shapes = document.querySelectorAll('.shape');
+      shapes.forEach((shape, index) => {
+        const duration = 15 + Math.random() * 10;
+        const delay = Math.random() * 5;
+        shape.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+      });
+    });
+  </script>
 </body>
 </html>
