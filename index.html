@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FelixCraft | Roleplay</title>
-  <link rel="icon" href="https://iili.io/3ws7PNs.png">
+  <link rel="icon" href="https://iili.io/3kG3CMv.png">
   <meta name="description" content="FelixCraft โรลเพลไมค์คราฟ.">
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -19,7 +19,6 @@
       --gradient: linear-gradient(135deg, #FFB6C1 0%, #89CFF0 100%);
     }
     
-    /* Loading Screen */
     #loading-screen {
       position: fixed;
       top: 0;
@@ -87,7 +86,6 @@
       overflow-x: hidden;
     }
     
-    /* Navbar */
     .navbar {
       background-color: rgba(10, 10, 20, 0.9);
       display: flex;
@@ -171,15 +169,58 @@
       box-shadow: 0 4px 15px rgba(137, 207, 240, 0.3);
       border: none;
       font-size: 1rem;
+      max-width: 180px;
+      justify-content: center;
+      margin: 0 auto;
     }
     
-    .discord-btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(137, 207, 240, 0.4);
-      text-shadow: 0 0 5px white;
+    .discord-btn {
+      background: var(--gradient);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: 0 4px 15px rgba(137, 207, 240, 0.3);
+      border: none;
+      font-size: 1rem;
+      min-width: 180px;
+      justify-content: center;
+      margin: 0;
     }
     
-    /* Hero Section */
+    .about-btn {
+      background: transparent;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border: 2px solid var(--primary-color);
+      font-size: 1rem;
+      min-width: 180px;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .btn-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+      width: 100%;
+      text-align: center;
+    }
+    
     .hero {
       background-image: url('https://iili.io/3wscDfR.gif');
       background-size: cover;
@@ -249,8 +290,15 @@
       text-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
     
+    .scroll-down-text {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 20px 0;
+      font-weight: 300;
+    }
+    
     .arrow {
-      margin-top: 40px;
+      margin-top: 20px;
       font-size: 2.5rem;
       animation: bounce 1.5s infinite, fadeIn 1s ease forwards 1.5s;
       opacity: 0;
@@ -258,7 +306,14 @@
       text-shadow: 0 2px 10px rgba(255, 182, 193, 0.5);
     }
     
-    /* Floating Shapes */
+    .btn-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+    }
+    
     .floating-shapes {
       position: absolute;
       top: 0;
@@ -309,7 +364,6 @@
       animation-duration: 25s;
     }
     
-    /* Main Content */
     .container {
       max-width: 1300px;
       margin: auto;
@@ -388,7 +442,6 @@
       text-shadow: 0 0 10px rgba(137, 207, 240, 0.5);
     }
     
-    /* Image Gallery */
     .image-container {
       display: flex;
       justify-content: center;
@@ -415,7 +468,6 @@
       border-color: rgba(255, 182, 193, 0.4);
     }
     
-    /* Team Section */
     .team-list {
       display: flex;
       flex-direction: column;
@@ -476,7 +528,6 @@
       color: var(--secondary-color);
     }
     
-    /* Projects Section */
     .projects-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -539,7 +590,6 @@
       opacity: 0.9;
     }
     
-    /* Footer */
     footer {
       text-align: center;
       padding: 40px 20px;
@@ -548,6 +598,7 @@
       position: relative;
       backdrop-filter: blur(5px);
       border-top: 1px solid rgba(255, 182, 193, 0.1);
+      width: 100%;
     }
     
     footer::before {
@@ -562,12 +613,29 @@
       border-radius: 2px;
     }
     
+    .footer-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
     footer p {
       font-size: 1rem;
       opacity: 0.7;
+      margin: 5px 0;
     }
     
-    /* Animations */
+    .credit-box {
+      background: rgba(30, 30, 40, 0.5);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+      border: 1px solid rgba(137, 207, 240, 0.2);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -616,7 +684,6 @@
       }
     }
     
-    /* Responsive */
     @media (max-width: 992px) {
       .navbar {
         padding: 15px 30px;
@@ -647,7 +714,7 @@
         justify-content: center;
       }
       
-      .discord-btn {
+      .discord-btn, .about-btn {
         margin-top: 15px;
       }
       
@@ -675,6 +742,11 @@
       .team-member {
         padding: 15px;
       }
+      
+      .btn-container {
+        flex-direction: column;
+        align-items: center;
+      }
     }
     
     @media (max-width: 480px) {
@@ -697,13 +769,23 @@
       .container {
         padding: 60px 15px;
       }
+      
+      .discord-btn, .about-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        width: 100%;
+      }
+      
+      .btn-container {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Loading Screen -->
+
   <div id="loading-screen">
-    <img src="https://cdn.discordapp.com/attachments/1294284728157081685/1367777232679862312/icon.png?ex=681dba50&is=681c68d0&hm=7dacc80d3401670c994401d9ebfc65b0c231349ea7d840a2790adff46c0423b2&" alt="FelixCraft Loading" class="loading-logo">
+    <img src="https://iili.io/3kGqsIt.png" alt="FelixCraft Loading" class="loading-logo">
     <div class="loading-bar-container">
       <div class="loading-bar" id="loading-bar"></div>
     </div>
@@ -716,22 +798,20 @@
     <div class="shape"></div>
   </div>
   
-  <!-- Navbar -->
   <nav class="navbar" id="navbar">
     <img src="https://iili.io/3ws7PNs.png" alt="FelixCraft Official">
     <div class="nav-links">
       <a href="#home">หน้าแรก</a>
       <a href="#about">เกี่ยวกับ</a>
+      <a href="#gallery">ผลงาน</a>
       <a href="#team">ทีมงาน</a>
       <a href="#projects">โปรเจค</a>
-      <a href="#gallery">ผลงาน</a>
     </div>
-    <a href="https://discord.gg/dnHNdRNZnq" class="discord-btn" target="_blank">
-      <i class="fab fa-discord"></i> เข้าร่วม Discord
+    <a href="https://discord.gg/dnHNdRNZnq" class="discord-btn hero-discord-btn">
+      <i class="fab fa-discord"></i> Join Discord
     </a>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="overlay"></div>
     <div class="hero-content">
@@ -739,21 +819,34 @@
         <span class="gradient-text">FelixCraft</span>
         <span class="highlight-text">Official</span>
       </h1>
-      <div class="subtitle">Roleplay Minecraft bedrock and Java คุณภาพ!<br>เซิร์ฟเวอร์โรลเพลย์ที่ทันสมัยและสนุกสนาน พร้อมประสบการณ์การเล่นที่สมจริงที่สุด</div>
-      <div class="arrow">↓</div>
+      <div class="subtitle">Roleplay Minecraft bedrock and Java คุณภาพ!
+        เซิร์ฟเวอร์โรลเพลย์ที่ทันสมัยและสนุกสนาน พร้อมประสบการณ์การเล่นที่สมจริงที่สุด</div>
+      
+      <div class="scroll-down-text">เลื่อนลงเพื่ออ่านรายละเอียด</div>
+      
+      <div class="btn-container">
+        <a href="https://discord.gg/dnHNdRNZnq" class="discord-btn hero-discord-btn" target="_blank">
+          <i class="fab fa-discord"></i> Join Discord
+        </a>
+        
+        <a href="#about" class="about-btn">
+          <i class="fas fa-info-circle"></i> เกี่ยวกับเรา
+        </a>
+      </div>
+      
+      <a href="#about" class="arrow-btn">
+        <div class="arrow">↓</div>
+      </a>
     </div>
   </section>
 
-  <!-- Main Content -->
   <div class="container">
-    <!-- About Section -->
     <section class="section" id="about">
       <h2>FelixCraft Official</h2>
       <p><strong>🎉 FelixCraft คือโปรเจค Roleplay Minecraft</strong> ใน Bedrock และ Java เพื่อความสนุกและประสบการณ์การเล่นที่สมจริงที่สุด ด้วยระบบที่ทันสมัยและชุมชนที่เป็นมิตร</p>
       <p>🧪 เรากำลังพัฒนาอย่างต่อเนื่อง และจะเปิดรับสมัครสมาชิกในเร็วๆ นี้ ติดตามข่าวสารได้ที่ <a href="https://discord.gg/dnHNdRNZnq" target="_blank" class="highlight">Discord</a> ของเราเพื่อไม่ให้พลาดทุกความเคลื่อนไหว</p>
     </section>
 
-    <!-- Discord Section -->
     <section class="section" id="discord">
       <h3>📞 เข้าร่วมชุมชนของเรา</h3>
       <p>ร่วมเป็นส่วนหนึ่งของชุมชน FelixCraft ที่ <a href="https://discord.gg/dnHNdRNZnq" target="_blank">Discord</a> เพื่อรับข่าวสารล่าสุด พูดคุยกับสมาชิกคนอื่นๆ และร่วมกิจกรรมพิเศษต่างๆ</p>
@@ -762,7 +855,6 @@
       </div>
     </section>
 
-    <!-- Gallery Section -->
     <section class="section" id="gallery">
       <h2>ผลงาน FelixCraft Bedrock</h2>
       <p>ชมผลงานการสร้างสรรค์และพัฒนาของเราใน Minecraft Bedrock Edition</p>
@@ -774,7 +866,6 @@
       </div>
     </section>
     
-    <!-- Team Section -->
     <section class="section" id="team">
       <h3>👨‍💻 ทีมพัฒนา FelixCraft</h3>
       <p>ทีมงานผู้ทุ่มเทและสร้างสรรค์ FelixCraft เพื่อประสบการณ์การเล่นที่ดีที่สุด</p>
@@ -812,7 +903,6 @@
       </div>
     </section>
     
-    <!-- Projects Section -->
     <section class="section" id="projects">
       <h3>🔥 โปรเจคของเรา</h3>
       <p>โปรเจคต่างๆ ที่เรากำลังพัฒนาอยู่</p>
@@ -831,20 +921,22 @@
         </div>
       </div>
     </section>
-
-    <footer>
-      <p>©2023 - ©2025 FelixCraft | Powered by Frame121</p>
-      <p style="margin-top: 10px;">ติดต่อเรา: felixcraft.official@gmail.com</p>
-    </footer>
   </div>
 
+  <footer>
+    <div class="footer-content">
+      <div class="credit-box">
+        <p>©2023 - ©2025 FelixCraft | Powered by Frame121</p>
+        <p>ติดต่อเรา: felixcraft.official@gmail.com</p>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    // Loading Screen Animation
     window.addEventListener('load', function() {
       const loadingBar = document.getElementById('loading-bar');
       const loadingScreen = document.getElementById('loading-screen');
       
-      // Simulate loading progress
       let progress = 0;
       const interval = setInterval(() => {
         progress += Math.random() * 10;
@@ -862,7 +954,6 @@
       }, 200);
     });
     
-    // Scroll animation for sections
     document.addEventListener('DOMContentLoaded', function() {
       const sections = document.querySelectorAll('.section');
       
@@ -878,7 +969,6 @@
         observer.observe(section);
       });
       
-      // Navbar scroll effect
       window.addEventListener('scroll', function() {
         const navbar = document.getElementById('navbar');
         if (window.scrollY > 50) {
@@ -888,7 +978,6 @@
         }
       });
       
-      // Add floating animation to shapes
       const shapes = document.querySelectorAll('.shape');
       shapes.forEach((shape, index) => {
         const duration = 15 + Math.random() * 10;
